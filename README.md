@@ -1,36 +1,48 @@
-# Webshop2
+# WebShop2
 
-Next.js App Router alapú, moduláris webshop motor Supabase és Stripe architektúrával, amelyet WooCommerce kiváltására terveztünk.
+High-performance ecommerce engine built with Next.js App Router, TypeScript, Tailwind CSS, Supabase, and Stripe.
 
-## Főbb elemek
+## What is included
 
-- Dinamikus termékoldalak Metadata API támogatással.
-- Skálázható termékvariációs adatmodell méret és szín kombinációkhoz.
-- Szigorúan szerveroldalon védett admin dashboard.
-- Stripe Checkout Session és webhook feldolgozás.
-- Supabase Auth alapú Google OAuth integrációs minta.
+- Modular storefront built with reusable UI components and client hooks.
+- Server-side protected admin dashboard with product CRUD flow and order visibility.
+- Scalable catalog schema with categories, options, option values, variants, and inventory tracking.
+- Stripe Checkout session creation and webhook processing.
+- Product page SEO with the Next.js Metadata API.
+- Netlify-ready deployment configuration.
 
-## Környezeti változók
+## Environment variables
 
-Másold át a `.env.example` fájl kulcsait a saját `.env.local` fájlodba:
+Copy `.env.example` to `.env.local` for local development.
 
-- `NEXT_PUBLIC_APP_URL`
+Required variables:
+
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `STRIPE_SECRET_KEY`
 - `STRIPE_WEBHOOK_SECRET`
 
-## Fázisok
+Optional but recommended:
 
-1. Adatmodell: [db/supabase/schema.sql](/C:/Users/balaz/Documents/CODEX/Webshop2/db/supabase/schema.sql)
-2. Admin UI: [app/admin/page.tsx](/C:/Users/balaz/Documents/CODEX/Webshop2/app/admin/page.tsx)
-3. Stripe: [app/api/checkout/route.ts](/C:/Users/balaz/Documents/CODEX/Webshop2/app/api/checkout/route.ts) és [app/api/stripe/webhook/route.ts](/C:/Users/balaz/Documents/CODEX/Webshop2/app/api/stripe/webhook/route.ts)
-4. Architektúra: [docs/architecture.md](/C:/Users/balaz/Documents/CODEX/Webshop2/docs/architecture.md)
+- `NEXT_PUBLIC_APP_URL`
+  Use your canonical production domain. If it is not set, the app falls back to Netlify-provided deploy URLs.
 
-## Indítás
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
+
+## Database and architecture
+
+- Schema: [db/supabase/schema.sql](/C:/Users/balaz/Documents/CODEX/Webshop2/db/supabase/schema.sql)
+- Architecture diagram: [docs/architecture.md](/C:/Users/balaz/Documents/CODEX/Webshop2/docs/architecture.md)
+- Netlify deployment notes: [docs/netlify-deploy.md](/C:/Users/balaz/Documents/CODEX/Webshop2/docs/netlify-deploy.md)
+
+## Netlify
+
+This repository includes [netlify.toml](/C:/Users/balaz/Documents/CODEX/Webshop2/netlify.toml) with explicit Next.js build settings and Next.js skew protection enabled for deploys.
+
+Secrets should be configured in the Netlify UI or CLI, not committed to the repository.

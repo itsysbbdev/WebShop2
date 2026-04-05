@@ -1,0 +1,12 @@
+[build]
+  command = "next build"
+  publish = ".next"
+
+[build.environment]
+  NETLIFY_NEXT_SKEW_PROTECTION = "true"
+
+[dev]
+  command = "next dev"
+  targetPort = 3000
+  port = 8888
+  autoLaunch = false

@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import { getAppUrl } from "@/lib/env";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -23,7 +25,7 @@ export function slugify(input: string) {
 }
 
 export function absoluteUrl(pathname: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || "http://localhost:3000";
+  const baseUrl = getAppUrl();
   return new URL(pathname, baseUrl).toString();
 }
 

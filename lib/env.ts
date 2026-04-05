@@ -2,6 +2,16 @@ function readEnv(name: string) {
   return process.env[name]?.trim();
 }
 
+export function getAppUrl() {
+  return (
+    readEnv("NEXT_PUBLIC_APP_URL") ||
+    readEnv("URL") ||
+    readEnv("DEPLOY_PRIME_URL") ||
+    readEnv("DEPLOY_URL") ||
+    "http://localhost:3000"
+  );
+}
+
 function requireEnv(name: string) {
   const value = readEnv(name);
 
@@ -26,7 +36,7 @@ export function hasStripeConfig() {
 
 export function getPublicEnv() {
   return {
-    appUrl: readEnv("NEXT_PUBLIC_APP_URL") || "http://localhost:3000",
+    appUrl: getAppUrl(),
     supabaseUrl: readEnv("NEXT_PUBLIC_SUPABASE_URL") || "",
     supabaseAnonKey: readEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY") || ""
   };
@@ -41,7 +51,7 @@ export function getSupabaseAdminEnv() {
 
 export function getStripeServerEnv() {
   return {
-    appUrl: readEnv("NEXT_PUBLIC_APP_URL") || "http://localhost:3000",
+    appUrl: getAppUrl(),
     stripeSecretKey: requireEnv("STRIPE_SECRET_KEY")
   };
 }
@@ -52,7 +62,7 @@ export function getStripeWebhookSecret() {
 
 export function getStripeRuntimeEnv() {
   return {
-    appUrl: readEnv("NEXT_PUBLIC_APP_URL") || "http://localhost:3000",
+    appUrl: getAppUrl(),
     stripeSecretKey: requireEnv("STRIPE_SECRET_KEY"),
     stripeWebhookSecret: requireEnv("STRIPE_WEBHOOK_SECRET")
   };
